@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Cadastro</title>
+	<link rel="Stylesheet" href="css/style.css"/>
+	<script>
+	function limparCampos(){
+		document.getElementsByTagName("input")[1].value = "";
+		document.getElementsByTagName("input")[2].value = "";
+		document.getElementsByTagName("input")[3].value = "";
+		document.getElementsByTagName("input")[4].value = "";
+	}
+	</script>
+</h:head>
+
+<h:body>
+	<h:form>
+
+<h:panelGrid>
+		<h1>Cadastro de contato</h1>
+		
+	</h:panelGrid>
+
+		<h:panelGrid columns="3" styleClass="ui-noborder">
+
+			<h:outputLabel value="Nome:" />
+			<p:inputText id="nome" value="#{ContatoBean.nome}" size="20"
+				required="true" requiredMessage="Campo Obrigatório" />
+			<h:message for="nome" />
+			
+			<h:outputLabel value="Email:" />
+			<p:inputText id="email" value="#{ContatoBean.email}" size="20" />
+			<h:message for="email" />
+			
+			<h:outputLabel value="Telefone:" />
+			<p:inputText id="tel" value="#{ContatoBean.telefone}" size="20" />
+			<h:message for="tel" />
+				
+			<h:outputLabel value="Nome do grupo:" />
+			<p:inputText id="grupo" value="#{ContatoBean.grupo}" size="20" />
+			<h:message for="grupo" />
+		</h:panelGrid>
+		<h:panelGrid columns="4" styleClass="ui-noborder">
+			<p:commandButton value="Cadastrar"  update="TabelaContato"  type="submit" action="cadastro?faces-redirect=true" actionListener="#{ContatoBean.CadastrarContato}"/>
+			<p:commandButton value="Limpar" onclick="limparCampos()"/>
+		</h:panelGrid>	
+			
+	<h3>Lista de contatos</h3>
+
+	<h:panelGrid>
+		<h:dataTable id="TabelaContato" value="#{ContatoBean.listar()}" var="cont"
+			title="Contatos Cadastradas" border="3" rows="40">
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{cont.id}" />
+			</h:column> 
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="NOME" size="50"/>
+				</f:facet>
+				<h:outputText value="#{cont.nome}" />
+			</h:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="EMAIL" size="50" />
+				</f:facet>
+				<h:outputText value="#{cont.email}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="TELEFONE" size="50" />
+				</f:facet>
+				<h:outputText value="#{cont.telefone}" />
+			</p:column>
+					
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="GRUPO" size="50" />
+				</f:facet>
+				<h:outputText value="#{cont.grupo}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+				<h:outputText value="D"/>
+				</f:facet>
+				<p:commandButton value="Deletar"  update="TabelaContato"  type="submit" action="cadastro?faces-redirect=true"  actionListener="#{ContatoBean.ExcluirContato(cont)}"/>
+				
+					</p:column>
+					<p:column>
+				<f:facet name="header">
+				<h:outputText value="A"/>
+				</f:facet>
+				<p:commandButton value="Atualizar" action="atualizacao?faces-redirect=true"  actionListener="#{ContatoBean.atualizar(cont)}" />
+					</p:column>
+		</h:dataTable>
+	</h:panelGrid>
+	<p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+    <h:outputText value="This dialog has nice effects." />
+</p:dialog>
+	</h:form>
+</h:body>
+</html>

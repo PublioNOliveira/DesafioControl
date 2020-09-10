@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+h1 {
+	font-size: 40px;
+	font-weight: bold;
+	font-family: Helvetica, Arial;
+	color: blue;
+	margin: 0;
+	padding: 0;
+	text-shadow: 3px 3px 3px #111111;
+		
+}
+
+h3 {
+	font-size: 30px;
+	font-weight:bold;
+	font-family: Helvetica, Arial;
+	color: blue;
+	text-shadow: 3px 3px 3px #111111;
+}
+
+body{
+	
+}
+
+
+
+
+
+
+
+
